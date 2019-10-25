@@ -1,19 +1,15 @@
-# fastai-vision-app
+# Starter for deploying [fast.ai](https://www.fast.ai) models on [Render](https://render.com)
 
+This repo can be used as a starting point to deploy [fast.ai](https://github.com/fastai/fastai) models on Render.
 
-Production ready starter pack for creating fast responsive Web App for Fast.AI Image models using Starlette.io framework with Uvicorn ASGI server.
+The sample app described here is up at https://fastai-v3.onrender.com. Test it out with bear images!
 
-Everything packaged in docker with requirement.txt, so you can push it to any docker hosted cloud service. Enjoy :)
+You can test your changes locally by installing Docker and using the following command:
 
-Few dockers hosted services where this starter pack will work =>
+```
+docker build -t fastai-v3 . && docker run --rm -it -p 5000:5000 fastai-v3
+```
 
+The guide for production deployment to Render is at https://course.fast.ai/deployment_render.html.
 
-* https://render.com
-* https://zeit.co/now
-* https://azure.microsoft.com/en-us/services/app-service/containers/
-* https://getcarina.com/
-* https://sloppy.io/en/
-* https://giantswarm.io
-* https://aws.amazon.com/ecs/
-* https://cloud.google.com/cloud-build/docs/
-* https://www.digitalocean.com/products/one-click-apps/docker/
+Please use [Render's fast.ai forum thread](https://forums.fast.ai/t/deployment-platform-render/33953) for questions and support.
