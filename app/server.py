@@ -1,13 +1,17 @@
+from fastai.vision import *
+from fastai import *
+import librosa.display
+import matplotlib.pyplot as plt
 import aiohttp
 import asyncio
 import uvicorn
-from fastai import *
-from fastai.vision import *
+
 from io import BytesIO
 from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
-from starlette.responses import HTMLResponse, JSONResponse
+from starlette.responses import HTMLResponse, JSONResponse, FileResponse
 from starlette.staticfiles import StaticFiles
+#import librosa
 
 #export_file_url = 'https://www.dropbox.com/s/6bgq8t6yextloqp/export.pkl?raw=1'
 export_file_url = 'https://drive.google.com/uc?export=download&id=1qJ5KwiM2XgTcK5LiCJ6czaAVmFZQR6yo'
@@ -55,16 +59,68 @@ async def homepage(request):
     html_file = path / 'view' / 'index.html'
     return HTMLResponse(html_file.open().read())
 
+@app.route('/spectrogram', methods=['POST'])
+async def spectrogram(request):
+    img_data = await request.form()
+    img_bytes = await (img_data['file'].read())
+    #img = open_image(BytesIO(img_bytes))
+    aud = BytesIO(img_bytes)
+    print("Yeahhhhhhhhhhhhhhh")
+    samples, sr = librosa.load(aud)
+    #samples, sr = librosa.load(img_data)
+    print("File loaded successfully")
+    X = librosa.stft(samples)
+    print("Stft successfully")
+    Xdb = librosa.amplitude_to_db(abs(X))
+    print("Amplitude to db successfully")
+    plt.figure(figsize=(14, 5))
+    p = librosa.display.specshow(Xdb, sr=sr, x_axis='time', y_axis='log')
+    #plt.colorbar()
+    #base = os.path.basename(audio_file_path)
+    #filename_, ext = os.path.splitext(base)
+    plt.savefig("spec.png")
+    print("File saved successfully")
+    #return FileResponse('test.png',media_type='image/png')
+    return FileResponse('spec.png')
+
+
+@app.route('/mel', methods=['POST'])
+async def spectrogram(request):
+    img_data = await request.form()
+    img_bytes = await (img_data['file'].read())
+    #img = open_image(BytesIO(img_bytes))
+    aud = BytesIO(img_bytes)
+    print("Yeahhhhhhhhhhhhhhh")
+    y, sr = librosa.load(aud)
+    print("File loaded successfully")
+
+    S = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=128, fmax=8000)
+
+    #X = librosa.stft(samples)
+    #print("Stft successfully")
+    #Xdb = librosa.amplitude_to_db(abs(X))
+    S_dB = librosa.power_to_db(S, ref=np.max)
+    print("Power to db successfully")
+    plt.figure(figsize=(14, 5))
+    p = librosa.display.specshow(S_dB, sr=sr, x_axis='time', y_axis='mel', fmax=8000)
+    plt.savefig("mel.png")
+    print("File saved successfully")
+    #return FileResponse('test.png',media_type='image/png')
+    return FileResponse('mel.png')
+
+
 
 @app.route('/analyze', methods=['POST'])
 async def analyze(request):
-    img_data = await request.form()
-    img_bytes = await (img_data['file'].read())
-    img = open_image(BytesIO(img_bytes))
+    #img_data = await request.form()
+    #img_bytes = await (img_data['file'].read())
+    #img = open_image(BytesIO(img_bytes))
+    img = open_image("spec.png")
     prediction = learn.predict(img)[0]
+    print("Prediction Done...Sending results")
     return JSONResponse({'result': str(prediction)})
 
 
 if __name__ == '__main__':
     if 'serve' in sys.argv:
-        uvicorn.run(app=app, host='0.0.0.0', port=5000, log_level="info")
+        uvicorn.run(app=app, host='0.0.0.0', port=5050, log_level="info")

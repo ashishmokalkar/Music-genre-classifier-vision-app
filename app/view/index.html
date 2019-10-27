@@ -17,27 +17,65 @@
                class='no-display'
                type='file'
                name='file'
-               accept='image/*'
+               accept='audio/*'
                onchange='showPicked(this)'>
       </div>
-      <button class='choose-file-button' type='button' onclick='showPicker()'>Select audio</button>
+	<div>
+      		<button class='choose-file-button' type='button' onclick='showPicker()'>Select audio</button>
+		<label id='upload-label'>*No file chosen*</label>
+		<p style = "font-size:15px;">
+			(Use of .wav file is recommended. Do not use .mp3 as it is depricated.)
+		</p>
+	</div>
+<!--
       <div class='upload-label'>
-        <label id='upload-label'>No file chosen</label>
+        <label id='upload-label'>*No file chosen*</label>
       </div>
+-->
       <div class='analyze'>
-        <button id='analyze-button' class='analyze-button' type='button' onclick='genSpectrogram()'>Generate Spectrogram</button>
-        <button id='analyze-button' class='analyze-button' type='button' onclick='genMel()'>Get Mel Frequency</button>
-        <button id='analyze-button' class='analyze-button' type='button' onclick='otherFeatures()'>Get other features</button>
+        <button id='spectrogram-button' class='analyze-button' type='button' onclick='genSpectrogram()'>Generate Spectrogram</button>
+	<p style = "font-size:15px;">
+      		Sampling Rate : 22000Hz<br>
+		Spectrogram Type : LOG<br>
+		X-Axis : Time<br>
+		Y-axis : Log<br>
+		
+    	</p>
+        <!--<button id='mel-button' class='analyze-button' type='button' onclick='genMel()'>Get Mel Spectrogram</button>-->
+        <!--<button id='other-feature-button' class='analyze-button' type='button' onclick='otherFeatures()'>Get other features</button>-->
       </div>
+
+	<div class='analyze'>
+		<button id='mel-button' class='analyze-button' type='button' onclick='genMel()'>Generate Mel Spectrogram</button>
+		<p style = "font-size:15px;">
+      		Sampling Rate : 22000Hz(22KHz)<br>
+		Mel bands(n_mels) : 128<br>
+		Highest frequency(fmax) : 8000<br>
+		X-Axis : Time<br>
+		Y-axis : Log<br>
+		
+    	</p>
+	</div>
       <div>
-        <img id='image-picked' class='no-display' alt='Chosen Image' height='400'>
+        <!--<img id='image-picked' class='no-display' alt='Chosen Image' height='400'>-->
+	<img id='image-picked' class='no-display' height='400'>
       </div>
       <div class='analyze'>
         <button id='analyze-button' class='analyze-button' type='button' onclick='analyze()'>Analyze</button>
+	<p style = "font-size:15px;">
+	Training Model : Residual Network(ResNet - Microsoft Research)
+	Algorithm : Convolutional Neural Networks
+	DL Framework : Pytorch
+	</p>
       </div>
       <div class='result-label'>
         <label id='result-label'></label>
       </div>
+	<div>
+        <!--<img id='image-picked' class='no-display' alt='Chosen Image' height='400'>-->
+	<img id='result-image' src="" height='400'>
+      </div>
+
     </div>
   </div>
 </div>
