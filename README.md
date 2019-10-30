@@ -18,11 +18,11 @@
 
 **-Convolutional Neural Networks**
 
-##Technique:
+## Technique:
 
-**Deep Residual Learning for Image Recognition.
+**Deep Residual Learning for Image Recognition.**
 
-##Model Used:
+## Model Used:
 
 **ResNet-50(Residual Network)**
 
