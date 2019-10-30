@@ -34,7 +34,7 @@
 
 	<div>
 		<button id='choose_long_cool_button' class='analyze-button' type='button' onclick='choose_long_cool()'>(Select sample <strong>ROCK</strong> song)<br>Long Cool Woman</button>
-		<button id='choose_when_u_are_smiling_jazz' class='analyze-button' type='button' onclick='choose_jazz_smiling()'>(Select sample <strong>JAZZ</strong> song)<br>When you are smiling
+		<button id='choose_when_u_are_smiling_jazz' class='analyze-button' type='button' onclick='choose_smiling_jazz_song()'>(Select sample <strong>JAZZ</strong> song)<br>When you are smiling
 		</button>
 	</div>
 
@@ -60,50 +60,36 @@
 
       <div class='analyze'>
         <button id='spectrogram-button' class='analyze-button' type='button' onclick='genSpectrogram()'>Generate Spectrogram</button>
-	<p style = "font-size:15px;">
+	<p style = "font-size:17px;">
       		Sampling Rate : 22000Hz<br>
 		Spectrogram Type : LOG<br>
 		X-Axis : Time<br>
 		Y-axis : Log<br>
-		
     	</p>
+	
+	<div>
+		<img id='image-picked' src="" height='400'>
+      	</div>
 
       </div>
 
 	<div class='analyze'>
-		<button id='mel-button' class='analyze-button' type='button' onclick='genMel()'>Generate Mel Spectrogram</button>
-		<p style = "font-size:15px;">
+		<button id='mel-button' class='analyze-button' type='button' onclick='genMel()'>Generate MEL Spectrogram</button>
+		<p style = "font-size:17px;">
       		Sampling Rate : 22000Hz(22KHz)<br>
 		Mel bands(n_mels) : 128<br>
 		Highest frequency(fmax) : 8000<br>
 		X-Axis : Time<br>
 		Y-axis : Log<br>
-		
     		</p>
 	</div>
-      <div>
-        <!--<img id='image-picked' class='no-display' alt='Chosen Image' height='400'>-->
-	<!--<img id='image-picked' class='no-display' height='400'>-->
-	<img id='image-picked' src="" height='400'>
-      </div>
+      
       <div class='analyze'>
-        <button id='analyze-button' class='analyze-button' type='button' onclick='analyze()'>Classify</button>
-	<!--
-	<p style = "font-size:15px;">
-	
-	Training Model : Residual Network(ResNet - Microsoft Research)<br>
-	Algorithm : Convolutional Neural Networks<br>
-	DL Framework : Pytorch
-	</p>-->
+        <button id='analyze-button' class='analyze-button' type='button' onclick='analyze()'>Classify using ResNet (Transfer Learning)</button>
       </div>
       <div class='result-label'>
         <label id='result-label'></label>
       </div>
-	<div>
-        <!--<img id='image-picked' class='no-display' alt='Chosen Image' height='400'>-->
-	<img id='result-image' src="" height='400'>
-      </div>
-
     </div>
   </div>
 </div>
