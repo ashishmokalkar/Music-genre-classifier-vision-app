@@ -21,7 +21,8 @@ classes = ['Pop', 'Jazz', 'Rock']
 path = Path(__file__).parent
 
 app = Starlette()
-app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
+app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'], allow_methods=['*'])
+#app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['*'], allow_methods=['*'])
 app.mount('/static', StaticFiles(directory='app/static'))
 
 
@@ -61,6 +62,7 @@ async def homepage(request):
 
 @app.route('/spectrogram', methods=['POST'])
 async def spectrogram(request):
+    print("Request ==== ", request)
     img_data = await request.form()
     img_bytes = await (img_data['file'].read())
     #img = open_image(BytesIO(img_bytes))

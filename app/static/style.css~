@@ -1,5 +1,5 @@
 body {
-    background-color: #80ffcc;
+    background-color: #b3ffb3;
 }
 
 .bold {
@@ -42,6 +42,13 @@ body {
     margin-top: 5em;
 }
 
+.audio_tag {
+	/*padding: 10px;*/
+	margin: 1.5em;
+	/*margin-bottom: 0.5em;
+	*/
+}
+
 .upload-label {
     padding: 10px;
     font-size: 12px;
@@ -55,7 +62,7 @@ body {
 
 button.choose-file-button {
     width: 200px;
-    height: 40px;
+    height: 60px;
     border-radius: 2px;
     background-color: #ffffff;
     border: solid 1px #7052CB;
@@ -64,9 +71,10 @@ button.choose-file-button {
 }
 
 button.analyze-button {
-    width: 200px;
-    height: 40px;
+    width: 250px;
+    height: 60px;
     border: solid 1px #7052CB;
+    margin:2em;
     border-radius: 2px;
     background-color: #7052CB;
     font-size: 16px;

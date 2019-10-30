@@ -7,9 +7,13 @@
 <body>
 <div>
   <div class='center'>
-    <div class='title'>Music Genre Classification using Audio Spectrogram Images</div>
+    <div class='title'>Music Genre Classification(Jazz, Pop and Rock) using Audio Spectrogram Images</div>
     <p style = "font-size:25px;">
-      Use audio files of <strong>Jazz, Pop and Rock </strong>  songs.
+	Training Model : Residual Network(ResNet - Microsoft Research)<br>
+	Algorithm : Convolutional Neural Networks<br>
+	DL Framework : Pytorch<br>
+	Accuracy : 92%
+      <!--Use audio files of <strong>Jazz, Pop and Rock </strong>  songs.-->
     </p>
     <div class='content'>
       <div class='no-display'>
@@ -22,16 +26,38 @@
       </div>
 	<div>
       		<button class='choose-file-button' type='button' onclick='showPicker()'>Select audio</button>
-		<label id='upload-label'>*No file chosen*</label>
-		<p style = "font-size:15px;">
+		<label style = "font-size:18px;" id='upload-label'>*No file chosen*</label>
+		<p style = "font-size:20px;">
 			(Use of .wav file is recommended. Do not use .mp3 as it is depricated.)
 		</p>
 	</div>
-<!--
-      <div class='upload-label'>
-        <label id='upload-label'>*No file chosen*</label>
-      </div>
--->
+
+	<div>
+		<button id='choose_long_cool_button' class='analyze-button' type='button' onclick='choose_long_cool()'>(Select sample <strong>ROCK</strong> song)<br>Long Cool Woman</button>
+		<button id='choose_when_u_are_smiling_jazz' class='analyze-button' type='button' onclick='choose_jazz_smiling()'>(Select sample <strong>JAZZ</strong> song)<br>When you are smiling
+		</button>
+	</div>
+
+	<div>
+		<!--
+		<audio controls>
+			<source src="https://drive.google.com/uc?export=download&id=13z1ARIH3vq-t5mHvFtNzpn1EefGMZgqO" >	
+			Your browser does not support the audio tag.
+		</audio>
+		-->
+		
+		<audio 	class='audio_tag' src="https://drive.google.com/uc?export=download&id=13z1ARIH3vq-t5mHvFtNzpn1EefGMZgqO" controls>
+  			Your browser does not support the &lt;audio&gt; tag. 
+  			
+		</audio>
+
+		<audio 	class='audio_tag' src="https://drive.google.com/uc?export=download&id=1-t0KXuUuSsgV_t329d6I087Fm3hPrRj0" controls>
+  			Your browser does not support the &lt;audio&gt; tag. 
+  			
+		</audio>
+		
+	</div>
+
       <div class='analyze'>
         <button id='spectrogram-button' class='analyze-button' type='button' onclick='genSpectrogram()'>Generate Spectrogram</button>
 	<p style = "font-size:15px;">
@@ -41,8 +67,7 @@
 		Y-axis : Log<br>
 		
     	</p>
-        <!--<button id='mel-button' class='analyze-button' type='button' onclick='genMel()'>Get Mel Spectrogram</button>-->
-        <!--<button id='other-feature-button' class='analyze-button' type='button' onclick='otherFeatures()'>Get other features</button>-->
+
       </div>
 
 	<div class='analyze'>
@@ -54,19 +79,22 @@
 		X-Axis : Time<br>
 		Y-axis : Log<br>
 		
-    	</p>
+    		</p>
 	</div>
       <div>
         <!--<img id='image-picked' class='no-display' alt='Chosen Image' height='400'>-->
-	<img id='image-picked' class='no-display' height='400'>
+	<!--<img id='image-picked' class='no-display' height='400'>-->
+	<img id='image-picked' src="" height='400'>
       </div>
       <div class='analyze'>
-        <button id='analyze-button' class='analyze-button' type='button' onclick='analyze()'>Analyze</button>
+        <button id='analyze-button' class='analyze-button' type='button' onclick='analyze()'>Classify</button>
+	<!--
 	<p style = "font-size:15px;">
-	Training Model : Residual Network(ResNet - Microsoft Research)
-	Algorithm : Convolutional Neural Networks
+	
+	Training Model : Residual Network(ResNet - Microsoft Research)<br>
+	Algorithm : Convolutional Neural Networks<br>
 	DL Framework : Pytorch
-	</p>
+	</p>-->
       </div>
       <div class='result-label'>
         <label id='result-label'></label>
