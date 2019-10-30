@@ -9,8 +9,8 @@
   <div class='center'>
     <div class='title'>Music Genre Classification(Jazz, Pop and Rock) using Audio Spectrogram Images</div>
     <p style = "font-size:25px;">
-	Training Model : Residual Network(ResNet - Microsoft Research)<br>
-	Algorithm : Convolutional Neural Networks<br>
+	Training Model : ResNet-50 (Residual Network - Microsoft Research)<br>
+	Algorithm : Deep Residual Learning for Image Recognition<br>
 	DL Framework : Pytorch<br>
 	Accuracy : 92%
       <!--Use audio files of <strong>Jazz, Pop and Rock </strong>  songs.-->
