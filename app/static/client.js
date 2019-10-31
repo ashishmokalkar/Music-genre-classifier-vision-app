@@ -12,7 +12,7 @@ function showPicked(input) {
 
   reader.onload = function(e) {
     el("image-picked").src = e.target.result;
-	console.log("Image picked === ", e.target.result);
+	//console.log("Image picked === ", e.target.result);
     el("image-picked").className = "";
   };
   reader.readAsDataURL(input.files[0]);
@@ -21,8 +21,8 @@ function showPicked(input) {
 function analyze() {
   var uploadFiles = el("file-input").files;
   //if (uploadFiles.length !== 1) alert("Please select a file to analyze!");
-  chose_sample_rock_song = 0;
-  chose_sample_jazz_song = 0;
+  //chose_sample_rock_song = 0;
+  //chose_sample_jazz_song = 0;
   el("analyze-button").innerHTML = "Analyzing...";
   var xhr = new XMLHttpRequest();
   var loc = window.location;
@@ -53,11 +53,11 @@ function genSpectrogram(){
 
 	if (chose_sample_rock_song === 1) {
 		console.log("Setting up rock file url");
-		//chose_sample_rock_song = 0;
+		chose_sample_rock_song = 0;
 		file_URL = "https://drive.google.com/uc?export=download&id=1f7G3m_rADqBvUO9WOsgRQeCigH2ErwyZ";
 	}
 	else if(chose_sample_jazz_song === 1) {
-		//chose_sample_jazz_song = 0;
+		chose_sample_jazz_song = 0;
 		console.log("Setting up Jazz url");
 		file_URL = "https://drive.google.com/uc?export=download&id=1-t0KXuUuSsgV_t329d6I087Fm3hPrRj0";
 	}
@@ -190,9 +190,10 @@ function genMel(){
   }
   else{
 
-	  //var uploadFiles = el("file-input").files;
+	  var uploadFiles = el("file-input").files;
 	  //if (uploadFiles.length !== 1) alert("Please select an audio file to get Spectrogram!");
 	  //el("spectrogram-button").innerHTML = "Generating Mel Spectrogram......";
+	  console.log("Into MEL file select");
 	  var xhr = new XMLHttpRequest();
 	  var loc = window.location;
 	  xhr.open("POST", `${loc.protocol}//${loc.hostname}:${loc.port}/mel`,
